@@ -7,8 +7,8 @@ My final year project aims to help self-learners who use internet as their activ
 ## Summarising:
 This part focuses on summarizing them for easy skimming over large contents.
 ### Input text:
-<br>The system can get input text from pdfs by extracting text from them using PyPdf2 library and performing few cleansing to it.
-<br>Similarly it can get inout from website links too. In order to cleanse the html format returned from webscraping, regular expressions are used.
+<br>From pdfs by extracting text from using PyPdf2 library and performing few cleansing to it.
+<br>From website links too. In order to cleanse the html format returned from webscraping, regular expressions are used.
 ### Summarizing Algorithm:
 I have used TF-iDF algorithm to extract the most important setences.
 <br>STEPS:
