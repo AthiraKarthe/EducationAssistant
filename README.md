@@ -22,7 +22,7 @@ I have used TF-iDF algorithm to extract the most important setences.
 6. Select the required percentage  of sentences from the sorted list.
 7. Return them in the order of their occurance.
 <br>                                                   **TA-DA!!**:grin:
-<br> Check out this link that i refered: https://medium.com/voice-tech-podcast/automatic-extractive-text-summarization-using-tfidf-3fc9a7b26f5
+<br>Check out this awesome link that I referred: https://medium.com/voice-tech-podcast/automatic-extractive-text-summarization-using-tfidf-3fc9a7b26f5
 ## Question answering:
 It is a model that helps in identifying the answer to a question or doubt posed by the user. Inorder to do this, the system returns top results for the subjects(finds by PoS tagging) in the user query and searches for the best anwer from the documents retrieved. 
 ## Integration of all learning platforms
