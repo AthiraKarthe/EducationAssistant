@@ -88,27 +88,60 @@ def sentence_importance(sentence,dict_freq,sentences):
      no_of_sentences = len(sentences)
      pos_tagged_sentence = pos_tagging(sentence)
      for word in pos_tagged_sentence:
-          if word.lower() not in Stopwords and word not in Stopwords and len(word)>1: 
+          if word.lower() not in Stopwords and len(word)>1: 
                 word = word.lower()
                 word = wordlemmatizer.lemmatize(word)
                 sentence_score = sentence_score + word_tfidf(dict_freq,word,sentences,sentence)
      return sentence_score
 
-from googlesearch import search
-query=input("what do you want to know?")
 
 
 
-for j in search(query, stop=1):
-	print(j)
-	link_to_crawl=j
-f = requests.get(link_to_crawl)
-# print(f.content)
-con=str(f.content)
-x=re.findall("<p[^>]*>([^<]+)</p>",con)
-x=str(x)
-tokenized_sentence = sent_tokenize(x)
-text = remove_special_characters(str(x))
+
+import PyPDF2 
+import textract
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+
+inp = input("Summarise pdf or link?")
+if inp=='pdf':
+		filename=input("enter the path of the pdf:")
+		#open allows you to read the file
+		pdfFileObj = open(filename,'rb')
+		#The pdfReader variable is a readable object that will be parsed
+		pdfReader = PyPDF2.PdfFileReader(pdfFileObj)
+		#discerning the number of pages will allow us to parse through all #the pages
+		num_pages = pdfReader.numPages
+		count = 0
+		text = ""
+		#The while loop will read each page
+		while count < num_pages:
+			pageObj = pdfReader.getPage(count)
+			count +=1
+			text += pageObj.extractText()
+		#This if statement exists to check if the above library returned #words. It's done because PyPDF2 cannot read scanned files.
+		if text != "":
+   				text = text
+		#If the above returns as False, we run the OCR library textract to #convert scanned/image based PDF files into text
+		else:
+   				text = textract.process(text, method='tesseract', language='eng')
+		tokenized_sentence = sent_tokenize(str(text))
+
+		
+		
+			
+if inp=='link':
+	link_to_crawl=input("enter the link to be summarised:")
+	f = requests.get(link_to_crawl)
+	# print(f.content)
+	con=str(f.content)
+	x=re.findall("<p[^>]*>([^<]+)</p>",con)
+	x=str(x)
+	tokenized_sentence=sent_tokenize(x)
+
+
+
+text = remove_special_characters(str(tokenized_sentence))
 text = re.sub(r'\d+', '', text)
 tokenized_words_with_stopwords = word_tokenize(text)
 tokenized_words = [word for word in tokenized_words_with_stopwords if word not in Stopwords]
@@ -118,35 +151,33 @@ tokenized_words = lemmatize_words(tokenized_words)
 word_freq = freq(tokenized_words)
 input_user = int(input('Percentage of information to retain(in percent):'))
 no_of_sentences = int(ceil(input_user * len(tokenized_sentence))/100)
-print(no_of_sentences)
-if no_of_sentences==0:
-	print('not enough info.. Searching again')
-	repeat(i=i+1)
-	
-
+print(no_of_sentences)	
 c = 1
 sentence_with_importance = {}
 for sent in tokenized_sentence:
-    sentenceimp = sentence_importance(sent,word_freq,tokenized_sentence)
-    sentence_with_importance[c] = sentenceimp
-    c = c+1
+	sentenceimp = sentence_importance(sent,word_freq,tokenized_sentence)
+	sentence_with_importance[c] = sentenceimp
+	c = c+1
 sentence_with_importance = sorted(sentence_with_importance.items(), key=operator.itemgetter(1),reverse=True)
 cnt = 0
 summary = []
 sentence_no = []
-for word_prob in sentence_with_importance:
-    if cnt < no_of_sentences:
-        sentence_no.append(word_prob[0])
-        cnt = cnt+1
-    else:
-      break
+for words_prob in sentence_with_importance:
+   		if cnt < no_of_sentences:
+   			sentence_no.append(words_prob[0])
+   			cnt = cnt+1
+   		else:
+   			break
 sentence_no.sort()
 cnt = 1
 for sentence in tokenized_sentence:
-    if cnt in sentence_no:
-       summary.append(sentence)
-    cnt = cnt+1
+	if cnt in sentence_no:
+		summary.append(sentence)
+	cnt = cnt+1
 summary = " ".join(summary)
 print("\n")
 print("Summary:")
-print(summary)
+summary=re.sub("(\\n)","",summary)
+sents=summary.split(',')
+for s in sents:
+	print(s)
