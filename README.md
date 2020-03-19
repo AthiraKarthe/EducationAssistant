@@ -17,7 +17,7 @@ I have used TF-iDF algorithm to extract the most important setences.
 <br>Find their frequencies.
 <br>Calculate TF and IDF using the formulae.
 ![Image](/tfidf.png)
- !Format:(https://github.com/AthiraKarthe/EducationAssistant/blob/master/tfidf.jpg)
+Format:![](https://github.com/AthiraKarthe/EducationAssistant/blob/master/tfidf.jpg)
 ## Question answering:
 It is a model that helps in identifying the answer to a question or doubt posed by the user. Inorder to do this, the system returns top results for the subjects(finds by PoS tagging) in the user query and searches for the best anwer from the documents retrieved. The question answering model can be trained with Stanford Question Answering dataset.
 ## Integration of all learning platforms
