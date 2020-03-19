@@ -4,7 +4,7 @@ My final year project aims to help self-learners who use internet as their activ
 - [ ] Question answering
 - [ ] Integration of all learning platforms
 
-## Summarising:
+## Summarizing:
 This part focuses on summarizing them for easy skimming over large contents.
 ### Input text:
 <br>From pdfs by extracting text from using PyPdf2 library and performing few cleansing to it.
