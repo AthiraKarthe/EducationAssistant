@@ -1,8 +1,8 @@
 # EducationalAssistant
 My final year project aims to help self-learners who use internet as their active source of knowledge. The project is expected to have 3 main modules namely:
-<br>*Summarizing
-<br>*Question answering
-<br>*Integration of all learning platforms
+<br>Markup: * Summarizing
+<br>* Question answering
+<br>* Integration of all learning platforms
 
 ## Summarising:
 This part focuses on summarizing them for easy skimming over large contents.
@@ -12,7 +12,7 @@ This part focuses on summarizing them for easy skimming over large contents.
 ### Summarizing Algorithm:
 I have used TF-iDF algorithm to extract the most important setences.
 <br>STEPS:
-<br>1.Tokenise,Lemmatize and remove special characters.
+<br><tab>1.Tokenise,Lemmatize and remove special characters.
 <br>2.Take up noun and verb tokens which is basically the importance provider of a sentence.
 <br>3.Find their frequencies.
 <br>4.Calculate TF and IDF using the formulae.
