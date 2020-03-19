@@ -12,8 +12,8 @@ This part focuses on summarizing them for easy skimming over large contents.
 ### Summarizing Algorithm:
 I have used TF-iDF algorithm to extract the most important setences.
 <br>STEPS:
-<br><tab>1.Tokenise,Lemmatize and remove special characters.
-<br>2.Take up noun and verb tokens which is basically the importance provider of a sentence.
+<br>- 1.Tokenise,Lemmatize and remove special characters.
+<br>- 2.Take up noun and verb tokens which is basically the importance provider of a sentence.
 <br>3.Find their frequencies.
 <br>4.Calculate TF and IDF using the formulae.
 ![](/tfidf.png)
